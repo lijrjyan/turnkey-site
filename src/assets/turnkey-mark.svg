@@ -1,5 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title id="title">Turnkey</title>
-  <rect width="48" height="48" rx="11" fill="#101b2d"/>
-  <path d="M10 12h28v8h-10v18h-8V20H10z" fill="#f1b94b"/>
+  <rect width="64" height="64" rx="14" fill="#16202c"/>
+  <g transform="translate(-0.45,-2.9) scale(1.1)">
+    <circle cx="17" cy="30" r="9.5" fill="none" stroke="#d99a2b" stroke-width="5"/>
+    <rect x="26" y="27.5" width="27" height="5" rx="2.5" fill="#d99a2b"/>
+    <rect x="33" y="32.5" width="4.5" height="6" rx="1.8" fill="#d99a2b"/>
+    <rect x="40" y="32.5" width="4.5" height="9.5" rx="1.8" fill="#d99a2b"/>
+    <rect x="47" y="32.5" width="4.5" height="13" rx="1.8" fill="#d99a2b"/>
+  </g>
 </svg>
