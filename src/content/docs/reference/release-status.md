@@ -9,7 +9,7 @@ description: Current truth about Turnkey source, PyPI, and website versions.
 |---|---|---|
 | PyPI package name | `0.0.1` | Namespace reservation; not the functional package described here. |
 | Product source preview | `0.1.0` | Functional code and tests in the product repository. |
-| Documentation | source-preview track | Site content is pinned to product commit `86d71e3290fffa7f0dc03afee7064fc79191f579` for its notebook set. |
+| Documentation | source-preview track | Site content is pinned to product commit `c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8` for its notebook set. |
 
 Do not use the PyPI reservation as runtime proof. Until a functional
 distribution is published, install from the product repository and record the

@@ -57,7 +57,7 @@ test('the learning book contains four ordered chapters and notebook downloads', 
 test('published notebooks carry exact product commit and checksum provenance', async () => {
   const provenance = JSON.parse(await text('public/notebooks/provenance.json'));
   assert.match(provenance.product_commit, /^[0-9a-f]{40}$/);
-  assert.equal(provenance.product_commit, '86d71e3290fffa7f0dc03afee7064fc79191f579');
+  assert.equal(provenance.product_commit, 'c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8');
 
   for (const item of provenance.notebooks) {
     const bytes = await readFile(new URL(`../public/notebooks/${item.file}`, import.meta.url));
@@ -119,7 +119,7 @@ test('documentation lanes are explicit and product claims are pinned', async () 
   }
 
   const source = JSON.parse(await text('sources/product.json'));
-  assert.equal(source.commit, '86d71e3290fffa7f0dc03afee7064fc79191f579');
+  assert.equal(source.commit, 'c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8');
   assert.equal(source.source_version, '0.1.0');
   assert.equal(source.pypi_version, '0.0.1');
 });

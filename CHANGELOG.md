@@ -16,6 +16,6 @@ recorded here. Product runtime releases are tracked in the product repository.
 - CODEOWNERS, Dependabot, immutable GitHub Action pins, repository-settings
   baseline, and a documented `dev` to `main` release procedure.
 
-The initial documentation set targets the Turnkey 0.1.0 source preview at
-commit `86d71e3290fffa7f0dc03afee7064fc79191f579`. PyPI 0.0.1 remains a namespace
+The current documentation set targets the Turnkey 0.1.0 source preview at
+commit `c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8`. PyPI 0.0.1 remains a namespace
 reservation.
