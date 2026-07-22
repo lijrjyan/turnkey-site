@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Runtime and package issues
+    url: https://github.com/lijrjyan/turnkey/issues
+    about: Report Turnkey code, packaging, or detector behavior in the product repository.
+  - name: Security report
+    url: https://github.com/lijrjyan/turnkey-site/security/policy
+    about: Do not publish vulnerabilities, credentials, or private data in an issue.

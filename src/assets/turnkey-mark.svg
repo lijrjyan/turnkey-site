@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-labelledby="title">
+  <title id="title">Turnkey</title>
+  <rect width="48" height="48" rx="11" fill="#101b2d"/>
+  <path d="M10 12h28v8h-10v18h-8V20H10z" fill="#f1b94b"/>
+</svg>

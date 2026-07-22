@@ -1,0 +1,109 @@
+---
+title: Turnkey
+description: Build, run, debug, and audit jailbreak detectors through one reproducible harness.
+template: splash
+hero:
+  tagline: Bring Your Own Detector. Turn an idea into a reproducible, inspectable jailbreak-detection experiment without rebuilding the evaluation stack.
+  actions:
+    - text: Start learning
+      link: /turnkey-site/learn/
+      icon: right-arrow
+      variant: primary
+    - text: Explore the reference
+      link: /turnkey-site/reference/
+      icon: open-book
+      variant: minimal
+---
+
+<section class="tk-section" aria-labelledby="start-heading">
+  <span class="tk-kicker">Source preview · 0.1.0</span>
+  <h2 id="start-heading">From zero to an auditable run.</h2>
+  <p class="tk-lede">
+    Start locally on CPU with a small built-in path. The same component boundary
+    carries forward when you connect a real detector, model provider, dataset,
+    or attack.
+  </p>
+  <div class="tk-install">
+    <code>git clone https://github.com/lijrjyan/turnkey.git<br />cd turnkey<br />uv sync<br />uv run turnkey --help</code>
+    <p class="tk-release-note">
+      PyPI <strong>0.0.1</strong> is a namespace reservation, not the functional
+      package. The working <strong>0.1.0 source preview</strong> is installed from
+      the repository until a functional PyPI release is announced.
+    </p>
+  </div>
+  <p><a href="/turnkey-site/start/install/">Read the installation status →</a></p>
+</section>
+
+<section class="tk-section" aria-labelledby="work-heading">
+  <span class="tk-kicker">One harness · four jobs</span>
+  <h2 id="work-heading">Run. Build. Debug. Audit.</h2>
+  <div class="tk-grid">
+    <article class="tk-card">
+      <span class="tk-number">01 / RUN</span>
+      <h3>Execute a comparable experiment</h3>
+      <p>Resolve versioned inputs, run an attack/detector path, and preserve the evidence needed to inspect it later.</p>
+    </article>
+    <article class="tk-card">
+      <span class="tk-number">02 / BUILD</span>
+      <h3>Bring your own detector</h3>
+      <p>Implement the public component boundary instead of forking the runner, metrics, and artifact pipeline.</p>
+    </article>
+    <article class="tk-card">
+      <span class="tk-number">03 / DEBUG</span>
+      <h3>Trace a missed case</h3>
+      <p>Follow structured events and typed signals to find where selection, policy, provider, or judgment diverged.</p>
+    </article>
+    <article class="tk-card">
+      <span class="tk-number">04 / AUDIT</span>
+      <h3>Recompute, do not just trust</h3>
+      <p>Cross-check cases, events, metrics, and run metadata to make unsupported success claims harder.</p>
+    </article>
+  </div>
+</section>
+
+<section class="tk-section" aria-labelledby="runtime-heading">
+  <span class="tk-kicker">Runtime model</span>
+  <h2 id="runtime-heading">A readable path from input to evidence.</h2>
+  <p class="tk-lede">
+    Turnkey keeps the experiment path explicit. Built-ins use registry aliases;
+    external components use module or file entry points behind the same contract.
+  </p>
+  <div class="tk-flow" role="img" aria-label="Dataset flows through content selection, attack, policy and provider, judge, metrics, artifacts, then audit">
+    dataset → selection → attack → policy/provider → judge → metrics → artifacts → audit
+  </div>
+  <p><a href="/turnkey-site/concepts/system-model/">Understand the system model →</a></p>
+</section>
+
+<section class="tk-section" aria-labelledby="learn-heading">
+  <span class="tk-kicker">Learn by running</span>
+  <h2 id="learn-heading">A continuous book, backed by notebooks.</h2>
+  <p class="tk-lede">
+    Follow the chapters in order for the D2L-style learning path, or use Tutorials,
+    Guides, Concepts, and Reference independently like a framework documentation site.
+  </p>
+  <div class="tk-grid">
+    <article class="tk-card"><span class="tk-number">CHAPTER 1</span><h3>First auditable run</h3><p>Learn the command, output tree, and evidence boundary.</p></article>
+    <article class="tk-card"><span class="tk-number">CHAPTER 2</span><h3>Build a detector</h3><p>Implement a small detector without deleting the real extension boundary.</p></article>
+    <article class="tk-card"><span class="tk-number">CHAPTER 3</span><h3>Debug a missed case</h3><p>Read case and event artifacts as one causal trace.</p></article>
+    <article class="tk-card"><span class="tk-number">CHAPTER 4</span><h3>Typed signals</h3><p>Carry detector evidence through the pipeline without ambiguous dictionaries.</p></article>
+  </div>
+</section>
+
+<section class="tk-section" aria-labelledby="paths-heading">
+  <span class="tk-kicker">Use the site your way</span>
+  <h2 id="paths-heading">Course depth and reference speed.</h2>
+  <div class="tk-grid">
+    <article class="tk-card"><h3><a href="/turnkey-site/learn/">Learn</a></h3><p>Ordered explanations, runnable checkpoints, notebooks, and next-chapter flow.</p></article>
+    <article class="tk-card"><h3><a href="/turnkey-site/tutorials/">Tutorials</a></h3><p>Complete a concrete task and verify an observable result.</p></article>
+    <article class="tk-card"><h3><a href="/turnkey-site/guides/">Guides</a></h3><p>Make implementation and operations decisions for your goal.</p></article>
+    <article class="tk-card"><h3><a href="/turnkey-site/reference/">Reference</a></h3><p>Look up exact CLI, configuration, artifact, and release contracts.</p></article>
+  </div>
+</section>
+
+<div class="tk-cta">
+  <div>
+    <h2>Start with one honest run.</h2>
+    <p>CPU-safe, inspectable, and small enough to understand.</p>
+  </div>
+  <a href="/turnkey-site/learn/quickstart/">Open Chapter 1 →</a>
+</div>

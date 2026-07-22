@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/lijrjyan/turnkey",
+  "commit": "86d71e3290fffa7f0dc03afee7064fc79191f579",
+  "source_version": "0.1.0",
+  "pypi_version": "0.0.1",
+  "pypi_state": "namespace reservation",
+  "content_scope": [
+    "runtime architecture",
+    "component boundary",
+    "artifact contract",
+    "CLI discovery",
+    "learning notebooks"
+  ]
+}

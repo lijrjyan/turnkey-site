@@ -1,0 +1,262 @@
+:root {
+  --sl-color-accent-low: #3a2b10;
+  --sl-color-accent: #a86800;
+  --sl-color-accent-high: #ffe5ad;
+  --sl-color-white: #182234;
+  --sl-color-gray-1: #2d3748;
+  --sl-color-gray-2: #4b5565;
+  --sl-color-gray-3: #697386;
+  --sl-color-gray-4: #c7cbd1;
+  --sl-color-gray-5: #e2e2de;
+  --sl-color-gray-6: #f1f0eb;
+  --sl-color-black: #fbfaf6;
+  --sl-color-bg-nav: color-mix(in srgb, #fbfaf6 94%, transparent);
+  --sl-font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sl-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --sl-content-width: 52rem;
+  --sl-sidebar-width: 18rem;
+  --tk-ink: #101b2d;
+  --tk-muted: #526075;
+  --tk-paper: #fbfaf6;
+  --tk-panel: #f3f1e9;
+  --tk-line: #d8d4c9;
+  --tk-accent: #a86800;
+  --tk-accent-bright: #f1b94b;
+}
+
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #3a2b10;
+  --sl-color-accent: #f1b94b;
+  --sl-color-accent-high: #fff0cc;
+  --sl-color-white: #f7f2e7;
+  --sl-color-gray-1: #e6e0d4;
+  --sl-color-gray-2: #b9b4aa;
+  --sl-color-gray-3: #858b98;
+  --sl-color-gray-4: #465064;
+  --sl-color-gray-5: #273348;
+  --sl-color-gray-6: #172236;
+  --sl-color-black: #0d1625;
+  --sl-color-bg-nav: color-mix(in srgb, #0d1625 94%, transparent);
+  --tk-ink: #f7f2e7;
+  --tk-muted: #b9c0cc;
+  --tk-paper: #0d1625;
+  --tk-panel: #152238;
+  --tk-line: #344158;
+  --tk-accent: #f1b94b;
+  --tk-accent-bright: #ffd985;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  letter-spacing: -0.006em;
+}
+
+a,
+button,
+summary,
+input {
+  min-height: 44px;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--tk-accent-bright);
+  outline-offset: 3px;
+}
+
+.site-title {
+  font-weight: 760;
+  letter-spacing: -0.03em;
+}
+
+.hero {
+  border-bottom: 1px solid var(--tk-line);
+  padding-block: clamp(3rem, 8vw, 7rem);
+}
+
+.hero h1 {
+  max-width: 13ch;
+  font-size: clamp(2.8rem, 7vw, 5.8rem);
+  line-height: 0.96;
+  letter-spacing: -0.065em;
+}
+
+.hero .tagline {
+  max-width: 58ch;
+  color: var(--tk-muted);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.55;
+}
+
+.hero .action {
+  border-radius: 0.45rem;
+  font-weight: 700;
+}
+
+.tk-kicker {
+  color: var(--tk-accent);
+  font-family: var(--sl-font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tk-section {
+  margin-block: clamp(4rem, 9vw, 7rem);
+}
+
+.tk-section > h2 {
+  max-width: 20ch;
+  margin-top: 0.65rem;
+  font-size: clamp(2rem, 4.2vw, 3.3rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.tk-lede {
+  max-width: 66ch;
+  color: var(--tk-muted);
+  font-size: 1.08rem;
+}
+
+.tk-install {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid var(--tk-line);
+  border-radius: 0.7rem;
+  background: var(--tk-panel);
+}
+
+.tk-install code {
+  display: block;
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--tk-line) 70%, transparent);
+  border-radius: 0.35rem;
+  background: var(--tk-paper);
+  color: var(--tk-ink);
+  font-size: clamp(0.82rem, 2vw, 0.98rem);
+}
+
+.tk-release-note {
+  margin: 0;
+  color: var(--tk-muted);
+  font-size: 0.92rem;
+}
+
+.tk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.tk-card {
+  min-width: 0;
+  padding: 1.35rem;
+  border: 1px solid var(--tk-line);
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--tk-panel) 54%, transparent);
+}
+
+.tk-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.18rem;
+}
+
+.tk-card p {
+  margin: 0;
+  color: var(--tk-muted);
+}
+
+.tk-number {
+  display: block;
+  margin-bottom: 1rem;
+  color: var(--tk-accent);
+  font-family: var(--sl-font-mono);
+  font-size: 0.82rem;
+}
+
+.tk-flow {
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-left: 4px solid var(--tk-accent);
+  background: var(--tk-panel);
+  font-family: var(--sl-font-mono);
+  white-space: nowrap;
+}
+
+.tk-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 0.7rem;
+  background: var(--tk-ink);
+  color: var(--tk-paper);
+}
+
+.tk-cta h2,
+.tk-cta p {
+  margin: 0;
+  color: inherit;
+}
+
+.tk-cta a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  border-radius: 0.4rem;
+  background: var(--tk-accent-bright);
+  color: #101b2d;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.sl-markdown-content :is(p, li) {
+  line-height: 1.75;
+}
+
+.sl-markdown-content h2 {
+  letter-spacing: -0.025em;
+}
+
+@media (max-width: 42rem) {
+  .tk-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tk-section {
+    margin-block: 3.5rem;
+  }
+
+  .tk-flow {
+    font-size: 0.77rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

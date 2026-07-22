@@ -1,0 +1,113 @@
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { readFile, stat } from 'node:fs/promises';
+import test from 'node:test';
+
+const text = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+
+test('the homepage exposes the complete product and learning entry points', async () => {
+  const home = await text('src/content/docs/index.mdx');
+
+  for (const phrase of [
+    'Bring Your Own Detector',
+    'Run',
+    'Build',
+    'Debug',
+    'Audit',
+    'Start learning',
+    'Explore the reference',
+  ]) {
+    assert.match(home, new RegExp(phrase));
+  }
+});
+
+test('installation copy accurately distinguishes PyPI reservation and source preview', async () => {
+  const home = await text('src/content/docs/index.mdx');
+  const install = await text('src/content/docs/start/install.md');
+
+  for (const content of [home, install]) {
+    assert.match(content, /0\.0\.1/);
+    assert.match(content, /namespace reservation/i);
+    assert.match(content, /0\.1\.0/);
+    assert.match(content, /source preview/i);
+  }
+});
+
+test('the learning book contains four ordered chapters and notebook downloads', async () => {
+  const config = await text('astro.config.mjs');
+  const chapters = [
+    ['learn/quickstart.md', '00_quickstart.ipynb'],
+    ['learn/build-your-own-detector.md', '01_build_your_own_detector.ipynb'],
+    ['learn/debug-a-missed-case.md', '02_debug_a_missed_case.ipynb'],
+    ['learn/typed-signals.md', '03_typed_signals.ipynb'],
+  ];
+
+  let previous = -1;
+  for (const [chapter, notebook] of chapters) {
+    const chapterText = await text(`src/content/docs/${chapter}`);
+    assert.match(chapterText, new RegExp(notebook.replaceAll('.', '\\.')));
+    await stat(new URL(`../public/notebooks/${notebook}`, import.meta.url));
+
+    const position = config.indexOf(chapter.replace(/\.md$/, ''));
+    assert.ok(position > previous, `${chapter} must appear in course order`);
+    previous = position;
+  }
+});
+
+test('published notebooks carry exact product commit and checksum provenance', async () => {
+  const provenance = JSON.parse(await text('public/notebooks/provenance.json'));
+  assert.match(provenance.product_commit, /^[0-9a-f]{40}$/);
+  assert.equal(provenance.product_commit, '86d71e3290fffa7f0dc03afee7064fc79191f579');
+
+  for (const item of provenance.notebooks) {
+    const bytes = await readFile(new URL(`../public/notebooks/${item.file}`, import.meta.url));
+    const digest = createHash('sha256').update(bytes).digest('hex');
+    assert.equal(digest, item.sha256, `${item.file} checksum drifted`);
+  }
+});
+
+test('GitHub Pages deploys only main with least-privilege permissions', async () => {
+  const workflow = await text('.github/workflows/pages.yml');
+  assert.match(workflow, /branches:\s*\[main\]/);
+  assert.match(workflow, /contents:\s*read/);
+  assert.match(workflow, /pages:\s*write/);
+  assert.match(workflow, /id-token:\s*write/);
+  assert.match(workflow, /actions\/upload-pages-artifact@v4/);
+  assert.match(workflow, /actions\/deploy-pages@v4/);
+  assert.match(workflow, /path:\s*\.\/dist/);
+});
+
+test('site configuration preserves the GitHub project base path', async () => {
+  const config = await text('astro.config.mjs');
+  assert.match(config, /site:\s*['"]https:\/\/lijrjyan\.github\.io['"]/);
+  assert.match(config, /base:\s*['"]\/turnkey-site\/?['"]/);
+});
+
+test('the repository ships a complete public contribution boundary', async () => {
+  for (const file of [
+    'CONTRIBUTING.md',
+    'CODE_OF_CONDUCT.md',
+    'SECURITY.md',
+    'SUPPORT.md',
+    'GOVERNANCE.md',
+    'CHANGELOG.md',
+    'LICENSE',
+    'NOTICE',
+    '.github/PULL_REQUEST_TEMPLATE.md',
+  ]) {
+    const content = await text(file);
+    assert.ok(content.trim().length > 100, `${file} must contain a real policy`);
+  }
+});
+
+test('documentation lanes are explicit and product claims are pinned', async () => {
+  const contributing = await text('CONTRIBUTING.md');
+  for (const lane of ['Learn', 'Tutorials', 'Guides', 'Concepts', 'Reference']) {
+    assert.match(contributing, new RegExp(`\\*\\*${lane}\\*\\*`));
+  }
+
+  const source = JSON.parse(await text('sources/product.json'));
+  assert.equal(source.commit, '86d71e3290fffa7f0dc03afee7064fc79191f579');
+  assert.equal(source.source_version, '0.1.0');
+  assert.equal(source.pypi_version, '0.0.1');
+});

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "product_repository": "https://github.com/lijrjyan/turnkey",
+  "product_commit": "86d71e3290fffa7f0dc03afee7064fc79191f579",
+  "source_path": "docs/notebooks",
+  "notebooks": [
+    {
+      "file": "00_quickstart.ipynb",
+      "sha256": "43d6e1977ebda2c77df902955b07ac977591e2e989a79c9790d38ba1b3ed5b53"
+    },
+    {
+      "file": "01_build_your_own_detector.ipynb",
+      "sha256": "990a9d0d3cb82a3dc116616594611508f55dca277c00d4a132988d0f6341263b"
+    },
+    {
+      "file": "02_debug_a_missed_case.ipynb",
+      "sha256": "babf75c7c2dcf3481bc45a051aae92efb7da3806b1ff2689b1c52c5278749d08"
+    },
+    {
+      "file": "03_typed_signals.ipynb",
+      "sha256": "e2f702d1ae39121aaf148006888a765cdd18398d12324f1dc58f153e928efea5"
+    }
+  ]
+}
