@@ -95,29 +95,33 @@ test('site configuration preserves the GitHub project base path', async () => {
   assert.match(config, /base:\s*['"]\/turnkey-site\/?['"]/);
 });
 
-test('the repository ships a complete public contribution boundary', async () => {
+test('repository-level documentation is intentionally minimal', async () => {
+  assert.match(await text('README.md'), /# Turnkey Site/);
+  assert.match(await text('LICENSE'), /Apache License\s+Version 2\.0/);
+
   for (const file of [
+    'AGENTS.md',
     'CONTRIBUTING.md',
     'CODE_OF_CONDUCT.md',
     'SECURITY.md',
     'SUPPORT.md',
     'GOVERNANCE.md',
     'CHANGELOG.md',
-    'LICENSE',
     'NOTICE',
+    'RELEASING.md',
+    '.githooks',
+    '.github/CODEOWNERS',
+    '.github/dependabot.yml',
+    '.github/ISSUE_TEMPLATE',
     '.github/PULL_REQUEST_TEMPLATE.md',
+    'scripts/install-git-hooks.sh',
+    'docs/repository-settings.md',
   ]) {
-    const content = await text(file);
-    assert.ok(content.trim().length > 100, `${file} must contain a real policy`);
+    await assert.rejects(text(file), undefined, `${file} belongs in the workspace`);
   }
 });
 
 test('documentation lanes are explicit and product claims are pinned', async () => {
-  const contributing = await text('CONTRIBUTING.md');
-  for (const lane of ['Learn', 'Tutorials', 'Guides', 'Concepts', 'Reference']) {
-    assert.match(contributing, new RegExp(`\\*\\*${lane}\\*\\*`));
-  }
-
   const source = JSON.parse(await text('sources/product.json'));
   assert.equal(source.commit, 'c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8');
   assert.equal(source.source_version, '0.1.0');
@@ -131,19 +135,4 @@ test('continuous integration includes browser and accessibility gates', async ()
     assert.match(workflow, /pnpm test:e2e/);
     assert.match(workflow, /timeout-minutes:/);
   }
-});
-
-test('repository governance is reviewable and dependency updates are automated', async () => {
-  const codeowners = await text('.github/CODEOWNERS');
-  const dependabot = await text('.github/dependabot.yml');
-  const settings = await text('docs/repository-settings.md');
-  const releasing = await text('RELEASING.md');
-
-  assert.match(codeowners, /^\*\s+@lijrjyan/m);
-  assert.match(dependabot, /package-ecosystem:\s*"npm"/);
-  assert.match(dependabot, /package-ecosystem:\s*"github-actions"/);
-  assert.match(settings, /Require a pull request before merging/i);
-  assert.match(settings, /GitHub Actions/i);
-  assert.match(releasing, /dev.*main/is);
-  assert.match(releasing, /product commit/i);
 });

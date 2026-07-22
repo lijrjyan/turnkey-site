@@ -31,11 +31,9 @@ local links, WCAG A/AA, and high-severity dependency advisories.
 - `src/content/docs/reference/`: precise contracts and release status;
 - `public/notebooks/`: downloadable notebook editions with provenance.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) before changing content. Development
-commits belong on `dev`; `main` is the deployed branch.
-
-Maintainers should also read [RELEASING.md](RELEASING.md) and compare the live
-GitHub configuration with [docs/repository-settings.md](docs/repository-settings.md).
+Development commits belong on `dev`; `main` is the deployed branch. Keep
+runtime implementation in the product repository and run `pnpm verify` before
+proposing documentation changes.
 
 ## License
 
