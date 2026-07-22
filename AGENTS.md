@@ -18,9 +18,10 @@ default; keep examples concise, reproducible, and honest about release state.
 
 ## Verification
 
-Run `pnpm test`, `pnpm notebooks:check`, and `pnpm build`. For UI changes,
-inspect desktop, 375px mobile, dark mode, focus navigation, overflow, links, and
-browser console errors. Scan the tracked tree for secrets before publishing.
+Run `pnpm verify`. For UI changes, inspect desktop, 375px mobile, dark mode,
+focus navigation, overflow, links, and browser console errors. Treat axe WCAG
+violations as failures, not warnings. Scan the tracked tree for secrets before
+publishing.
 
 Commit active work on `dev`. Never commit directly on `main`; promotion to the
 deployed branch requires owner approval.

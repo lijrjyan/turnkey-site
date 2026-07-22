@@ -28,17 +28,3 @@ body:
     id: correction
     attributes:
       label: Suggested correction or expected experience
-*** Add File: /home/jrjyan/turnkey-build/turnkey-site/src/content/docs/404.md
----
-title: Page not found
-template: splash
-hero:
-  tagline: This page moved, was renamed, or never existed. Search the documentation or return to the learning map.
-  actions:
-    - text: Go home
-      link: /turnkey-site/
-      variant: primary
-    - text: Browse Learn
-      link: /turnkey-site/learn/
-      variant: minimal
----

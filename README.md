@@ -8,6 +8,7 @@ learning book for [Turnkey](https://github.com/lijrjyan/turnkey).
 ```bash
 corepack enable
 pnpm install
+pnpm exec playwright install chromium
 pnpm test
 pnpm dev
 ```
@@ -15,6 +16,10 @@ pnpm dev
 The production site is configured for
 `https://lijrjyan.github.io/turnkey-site/`. Use `pnpm build` to run Astro's
 diagnostics and create the static `dist/` tree.
+
+Run `pnpm verify` before review to check content contracts, notebook
+provenance, the production build, desktop/mobile browser behavior, full-site
+local links, WCAG A/AA, and high-severity dependency advisories.
 
 ## Content map
 
@@ -28,6 +33,9 @@ diagnostics and create the static `dist/` tree.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) before changing content. Development
 commits belong on `dev`; `main` is the deployed branch.
+
+Maintainers should also read [RELEASING.md](RELEASING.md) and compare the live
+GitHub configuration with [docs/repository-settings.md](docs/repository-settings.md).
 
 ## License
 

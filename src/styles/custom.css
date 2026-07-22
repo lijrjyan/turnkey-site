@@ -1,6 +1,7 @@
 :root {
+  color-scheme: light;
   --sl-color-accent-low: #3a2b10;
-  --sl-color-accent: #a86800;
+  --sl-color-accent: #945d00;
   --sl-color-accent-high: #ffe5ad;
   --sl-color-white: #182234;
   --sl-color-gray-1: #2d3748;
@@ -20,11 +21,12 @@
   --tk-paper: #fbfaf6;
   --tk-panel: #f3f1e9;
   --tk-line: #d8d4c9;
-  --tk-accent: #a86800;
+  --tk-accent: #945d00;
   --tk-accent-bright: #f1b94b;
 }
 
 :root[data-theme='dark'] {
+  color-scheme: dark;
   --sl-color-accent-low: #3a2b10;
   --sl-color-accent: #f1b94b;
   --sl-color-accent-high: #fff0cc;
@@ -48,6 +50,7 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: color-mix(in srgb, var(--tk-accent-bright) 24%, transparent);
 }
 
 body {
@@ -59,6 +62,20 @@ button,
 summary,
 input {
   min-height: 44px;
+  touch-action: manipulation;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 6rem;
+  text-wrap: balance;
+}
+
+:is(p, li) {
+  text-wrap: pretty;
+}
+
+.sl-markdown-content a {
+  overflow-wrap: anywhere;
 }
 
 a:focus-visible,

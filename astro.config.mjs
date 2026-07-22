@@ -1,9 +1,14 @@
 import { defineConfig } from 'astro/config';
+import { unified } from '@astrojs/markdown-remark';
 import starlight from '@astrojs/starlight';
+import accessibleTables from './src/plugins/rehype-accessible-tables.mjs';
 
 export default defineConfig({
   site: 'https://lijrjyan.github.io',
   base: '/turnkey-site/',
+  markdown: {
+    processor: unified({ rehypePlugins: [accessibleTables] }),
+  },
   integrations: [
     starlight({
       title: 'Turnkey',

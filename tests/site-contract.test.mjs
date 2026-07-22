@@ -72,9 +72,21 @@ test('GitHub Pages deploys only main with least-privilege permissions', async ()
   assert.match(workflow, /contents:\s*read/);
   assert.match(workflow, /pages:\s*write/);
   assert.match(workflow, /id-token:\s*write/);
-  assert.match(workflow, /actions\/upload-pages-artifact@v4/);
-  assert.match(workflow, /actions\/deploy-pages@v4/);
+  assert.match(workflow, /actions\/upload-pages-artifact@[0-9a-f]{40}\s+# v4/);
+  assert.match(workflow, /actions\/deploy-pages@[0-9a-f]{40}\s+# v4/);
   assert.match(workflow, /path:\s*\.\/dist/);
+});
+
+test('all third-party workflow actions are pinned to full commit SHAs', async () => {
+  for (const file of ['.github/workflows/ci.yml', '.github/workflows/pages.yml']) {
+    const workflow = await text(file);
+    const uses = [...workflow.matchAll(/uses:\s*([^\s#]+)(?:\s+#\s*(\S+))?/g)];
+    assert.ok(uses.length > 0, `${file} must use tracked actions`);
+    for (const match of uses) {
+      assert.match(match[1], /@[0-9a-f]{40}$/, `${match[1]} must be immutable`);
+      assert.match(match[2] ?? '', /^v\d+$/, `${match[1]} needs a readable major-version comment`);
+    }
+  }
 });
 
 test('site configuration preserves the GitHub project base path', async () => {
@@ -110,4 +122,28 @@ test('documentation lanes are explicit and product claims are pinned', async () 
   assert.equal(source.commit, '86d71e3290fffa7f0dc03afee7064fc79191f579');
   assert.equal(source.source_version, '0.1.0');
   assert.equal(source.pypi_version, '0.0.1');
+});
+
+test('continuous integration includes browser and accessibility gates', async () => {
+  for (const file of ['.github/workflows/ci.yml', '.github/workflows/pages.yml']) {
+    const workflow = await text(file);
+    assert.match(workflow, /playwright install --with-deps chromium/);
+    assert.match(workflow, /pnpm test:e2e/);
+    assert.match(workflow, /timeout-minutes:/);
+  }
+});
+
+test('repository governance is reviewable and dependency updates are automated', async () => {
+  const codeowners = await text('.github/CODEOWNERS');
+  const dependabot = await text('.github/dependabot.yml');
+  const settings = await text('docs/repository-settings.md');
+  const releasing = await text('RELEASING.md');
+
+  assert.match(codeowners, /^\*\s+@lijrjyan/m);
+  assert.match(dependabot, /package-ecosystem:\s*"npm"/);
+  assert.match(dependabot, /package-ecosystem:\s*"github-actions"/);
+  assert.match(settings, /Require a pull request before merging/i);
+  assert.match(settings, /GitHub Actions/i);
+  assert.match(releasing, /dev.*main/is);
+  assert.match(releasing, /product commit/i);
 });

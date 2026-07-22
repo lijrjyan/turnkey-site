@@ -28,14 +28,15 @@ bash scripts/install-git-hooks.sh
 
 1. Install Node 22 or newer and enable Corepack.
 2. Run `pnpm install`.
-3. Place content in the lane matching its purpose:
+3. Run `pnpm exec playwright install chromium` once for local browser checks.
+4. Place content in the lane matching its purpose:
    - **Learn** for ordered conceptual progression;
    - **Tutorials** for a complete task with an observable result;
    - **Guides** for goal-oriented decisions and operations;
    - **Concepts** for stable mental models;
    - **Reference** for exact contracts and exhaustive facts.
-4. Add the page to `astro.config.mjs` when it belongs in global navigation.
-5. Run `pnpm check && pnpm build`.
+5. Add the page to `astro.config.mjs` when it belongs in global navigation.
+6. Run `pnpm verify`.
 
 ## Writing contract
 
@@ -71,7 +72,7 @@ product checkout.
 - [ ] Scope is in this repository's ownership boundary.
 - [ ] Commands and examples match the stated product version/commit.
 - [ ] New pages are reachable from navigation or a deliberate parent page.
-- [ ] `pnpm test`, `pnpm build`, and notebook provenance checks pass.
+- [ ] `pnpm verify` passes, including browser, link, WCAG, and provenance checks.
 - [ ] Light/dark and narrow-screen reading remain usable.
 - [ ] No secret, internal identifier, or private source material was added.
 - [ ] License/attribution changes are included when required.

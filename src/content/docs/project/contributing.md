@@ -13,5 +13,5 @@ product repository.
 
 Every procedural page needs a reproducible command, expected result, and first
 debugging surface. Every release claim needs a version or commit. Before review,
-run `pnpm test`, `pnpm notebooks:check`, and `pnpm build`, then inspect narrow
-screens, dark mode, keyboard focus, links, and browser console output.
+run `pnpm verify`; it covers content contracts, notebook provenance, the static
+build, narrow-screen behavior, local links, WCAG A/AA, and dependency advisories.
