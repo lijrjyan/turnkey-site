@@ -42,6 +42,14 @@ test('every generated page has valid local links', async ({ page, request }) => 
 for (const route of ['', 'learn/quickstart/', 'reference/artifact-schema/']) {
   test(`${route || 'home'} has no WCAG A/AA violations`, async ({ page }) => {
     await page.goto(route);
+    // Expressive Code marks overflowing code blocks focusable from a debounced
+    // idle callback; let that settle before scanning or the scan races it.
+    await page.waitForFunction(() => {
+      const scrollable = [...document.querySelectorAll('.expressive-code pre')].filter(
+        (pre) => pre.scrollWidth > pre.clientWidth,
+      );
+      return scrollable.every((pre) => pre.getAttribute('tabindex') === '0');
+    });
     const results = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
