@@ -7,11 +7,12 @@ description: Current truth about Turnkey source, PyPI, and website versions.
 
 | Surface | Version/state | Meaning |
 |---|---|---|
-| PyPI package name | `0.0.1` | Namespace reservation; not the functional package described here. |
-| Product source preview | `0.1.0` | Functional code and tests in the product repository. |
-| Documentation | source-preview track | Site content is pinned to product commit `c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8` for its notebook set. |
+| PyPI package | `0.1.0` | Functional release: `pip install turnkey`. |
+| Product repository | tag `v0.1.0` | First public release; development continues on `dev`. |
+| Docker image | `ghcr.io/lijrjyan/turnkey` | Built and smoke-tested from the release tag. |
+| Documentation | release track | The notebook set is pinned to the product commit recorded in [notebook provenance](/turnkey-site/notebooks/provenance.json). |
 
-Do not use the PyPI reservation as runtime proof. Until a functional
-distribution is published, install from the product repository and record the
-exact commit. The site will update this page and installation guidance as a
-release gate, not as an implicit side effect of source changes.
+Install either from PyPI or from the repository; for reproducible experiments,
+record the exact package version or commit alongside your run artifacts. This
+page updates as a release gate, not as an implicit side effect of source
+changes.

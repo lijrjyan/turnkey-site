@@ -1,14 +1,15 @@
 {
   "repository": "https://github.com/lijrjyan/turnkey",
-  "commit": "c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8",
+  "commit": "470889f0c23811623bc25fdae654a2a6cd88ca2c",
   "source_version": "0.1.0",
-  "pypi_version": "0.0.1",
-  "pypi_state": "namespace reservation",
+  "pypi_version": "0.1.0",
+  "pypi_state": "functional release",
   "content_scope": [
     "runtime architecture",
     "component boundary",
     "artifact contract",
     "CLI discovery",
     "learning notebooks"
-  ]
+  ],
+  "release_tag": "v0.1.0"
 }

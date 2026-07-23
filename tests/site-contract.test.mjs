@@ -21,15 +21,14 @@ test('the homepage exposes the complete product and learning entry points', asyn
   }
 });
 
-test('installation copy accurately distinguishes PyPI reservation and source preview', async () => {
+test('installation copy reflects the published PyPI release', async () => {
   const home = await text('src/content/docs/index.mdx');
   const install = await text('src/content/docs/start/install.md');
 
   for (const content of [home, install]) {
-    assert.match(content, /0\.0\.1/);
-    assert.match(content, /namespace reservation/i);
     assert.match(content, /0\.1\.0/);
-    assert.match(content, /source preview/i);
+    assert.match(content, /pip install turnkey/);
+    assert.doesNotMatch(content, /namespace reservation/i);
   }
 });
 
@@ -56,8 +55,9 @@ test('the learning book contains four ordered chapters and notebook downloads', 
 
 test('published notebooks carry exact product commit and checksum provenance', async () => {
   const provenance = JSON.parse(await text('public/notebooks/provenance.json'));
+  const source = JSON.parse(await text('sources/product.json'));
   assert.match(provenance.product_commit, /^[0-9a-f]{40}$/);
-  assert.equal(provenance.product_commit, 'c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8');
+  assert.equal(provenance.product_commit, source.commit);
 
   for (const item of provenance.notebooks) {
     const bytes = await readFile(new URL(`../public/notebooks/${item.file}`, import.meta.url));
@@ -123,9 +123,9 @@ test('repository-level documentation is intentionally minimal', async () => {
 
 test('documentation lanes are explicit and product claims are pinned', async () => {
   const source = JSON.parse(await text('sources/product.json'));
-  assert.equal(source.commit, 'c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8');
+  assert.match(source.commit, /^[0-9a-f]{40}$/);
   assert.equal(source.source_version, '0.1.0');
-  assert.equal(source.pypi_version, '0.0.1');
+  assert.equal(source.pypi_version, '0.1.0');
 });
 
 test('continuous integration includes browser and accessibility gates', async () => {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "product_repository": "https://github.com/lijrjyan/turnkey",
-  "product_commit": "c5dbc8eabc5ef2f5b44749d64d66efcc68d30dd8",
+  "product_commit": "470889f0c23811623bc25fdae654a2a6cd88ca2c",
   "source_path": "docs/notebooks",
   "notebooks": [
     {

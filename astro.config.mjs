@@ -25,7 +25,7 @@ export default defineConfig({
       lastUpdated: true,
       pagefind: true,
       sidebar: [
-        { label: 'Home', slug: 'index' },
+        { label: 'About', slug: 'about' },
         {
           label: 'Start here',
           items: [

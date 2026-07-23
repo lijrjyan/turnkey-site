@@ -3,30 +3,35 @@ title: Install Turnkey
 description: Choose the honest installation path for the current release state.
 ---
 
-Turnkey is currently available as a functional **0.1.0 source preview**. The
-package named `turnkey` on PyPI is **0.0.1**, a namespace reservation; it does
-not yet contain the functional runtime documented on this site.
+Turnkey **0.1.0** is published on [PyPI](https://pypi.org/project/turnkey/).
 
-## Recommended: source preview
+## Recommended: install from PyPI
 
-Prerequisites: Git, Python 3.11 or newer, and [uv](https://docs.astral.sh/uv/).
+Prerequisites: Python 3.10 or newer.
+
+```bash
+pip install turnkey
+turnkey --help
+```
+
+Expected result: the CLI prints its available commands without importing a
+model server or downloading a dataset. Scaffold a runnable project with
+`turnkey init my-detector`.
+
+## From source (development and the full config library)
+
+Prerequisites: Git and [uv](https://docs.astral.sh/uv/).
 
 ```bash
 git clone https://github.com/lijrjyan/turnkey.git
 cd turnkey
-uv sync
-uv run turnkey --help
+uv sync --extra dev
+uv run turnkey run --config configs/runs/smoke.yaml
 ```
 
-Expected result: the CLI prints its available commands without importing a
-model server or downloading a dataset.
-
-## Why not `pip install turnkey` yet?
-
-`pip install turnkey==0.0.1` reaches the reserved PyPI name, not the 0.1.0
-source preview. This page will switch to the normal pip/uv install selector only
-after the functional distribution is published and verified from a clean
-environment.
+The repository checkout also ships the `configs/` library used throughout this
+documentation and the one-click `Dockerfile` (CPU `core` target and GPU `full`
+target).
 
 ## Verify the checkout
 
