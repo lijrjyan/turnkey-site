@@ -14,7 +14,7 @@ export default defineConfig({
       title: 'Turnkey',
       description: 'Build, run, debug, and audit jailbreak detectors.',
       logo: { src: './src/assets/turnkey-mark.svg' },
-      favicon: '/turnkey-site/favicon.svg',
+      favicon: '/favicon.svg',
       social: [
         { icon: 'github', label: 'Turnkey on GitHub', href: 'https://github.com/lijrjyan/turnkey' },
       ],
